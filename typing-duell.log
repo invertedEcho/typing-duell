@@ -4732,3 +4732,4 @@ INFO [typing_duell::user_interface] iterating over text to type, current char: L
 INFO [typing_duell::user_interface] user already typed, text input length: 1
 INFO [typing_duell::user_interface] iterating over text to type, current char: o, current index: 1
 INFO [typing_duell::user_interface] user already typed, text input length: 1
+INFO [typing_duell::calculate] time_elapsed: SystemTime { tv_sec: 1760447307, tv_nsec: 94718924 }

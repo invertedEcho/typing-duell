@@ -1,5 +1,3 @@
-use color_eyre::owo_colors::OwoColorize;
-use log::info;
 use ratatui::{
     Frame,
     layout::{Constraint, Layout},
@@ -8,7 +6,7 @@ use ratatui::{
     widgets::{Block, Borders, Paragraph, Wrap},
 };
 
-use crate::{AppState, CurrentScreen};
+use crate::{AppState, CurrentScreen, wpm::calculate_words_per_minute};
 
 pub fn draw_widgets_to_frame(frame: &mut Frame, app_state: &mut AppState) {
     match app_state.current_screen {
@@ -41,7 +39,7 @@ fn draw_playing_screen_to_frame(frame: &mut Frame, app_state: &mut AppState) {
 
     let [_, center_layout, _] = root_layout.areas(frame.area());
 
-    let title_right = format!("WPM: {}", app_state.wpm);
+    let title_right = format!("WPM: {}", calculate_words_per_minute(app_state));
     let center_block = Block::new()
         .title_top(Line::from("Now Playing").left_aligned())
         .title_top(Line::from(title_right).right_aligned())

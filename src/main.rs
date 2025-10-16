@@ -7,6 +7,7 @@ use crate::{
     texts::LOREM_IPSUM_TEXT,
     user_input::{KEY_RETURN_QUIT, handle_key_event},
     user_interface::draw_widgets_to_frame,
+    wpm::get_unix_timestamp,
 };
 
 mod game;
@@ -14,6 +15,7 @@ mod logger;
 mod texts;
 mod user_input;
 mod user_interface;
+mod wpm;
 
 #[derive(Default)]
 struct AppState {
@@ -25,6 +27,8 @@ struct AppState {
     current_text_to_type_index: usize,
     /// The text that was written by the user
     user_text: String,
+    /// The unix timestamp of the second the type test was started
+    type_test_timestamp: Option<u64>,
 }
 
 #[derive(Default)]
@@ -47,6 +51,7 @@ fn main() -> Result<()> {
 fn run(mut terminal: DefaultTerminal) -> Result<()> {
     let mut app_state = AppState {
         text_to_type: LOREM_IPSUM_TEXT.to_string(),
+        type_test_timestamp: Some(get_unix_timestamp()),
         ..Default::default()
     };
 
